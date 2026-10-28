@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Receptionist for Tutoring Centers | automora.ai</title>
+<meta name="description" content="automora.ai answers parents’ calls, chats and texts 24/7 for tutoring and test-prep centers, explains your programs and books assessments.">
+<style>
+:root{--bg:#fbfaff;--bg2:#f1eefe;--fg:#161432;--mut:#625f82;--line:#e5e1f7;--pri:#5b3df5;--pri2:#9a6bff;--ok:#12a36b;--card:#fff;--sh:0 10px 40px rgba(91,61,245,.12);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d0c1f;--bg2:#15132f;--fg:#f2f0ff;--mut:#a8a5c9;--line:#2a2751;--card:#171539;--sh:0 10px 40px rgba(0,0,0,.4);color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d0c1f;--bg2:#15132f;--fg:#f2f0ff;--mut:#a8a5c9;--line:#2a2751;--card:#171539;--sh:0 10px 40px rgba(0,0,0,.4);color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:80px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}.w{max-width:1120px;margin:0 auto;padding:0 22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:11}
+header .w{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:20px;letter-spacing:-.5px}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--pri),var(--pri2));display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px}.logo b{color:var(--pri)}
+nav{display:flex;gap:26px;align-items:center;font-size:14.5px;color:var(--mut)}nav a:hover{color:var(--fg)}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff!important;padding:13px 26px;border-radius:12px;font-weight:600;font-size:15px;box-shadow:0 8px 24px rgba(91,61,245,.35);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(91,61,245,.45)}
+.btn.o{background:var(--card);color:var(--fg)!important;border:1px solid var(--line);box-shadow:none}.btn.s{padding:9px 18px;font-size:14px}
+.hero{position:relative;overflow:hidden;padding:72px 0 56px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;z-index:0}
+.hero::before{width:420px;height:420px;background:var(--pri);top:-140px;left:-100px}.hero::after{width:380px;height:380px;background:#ff7ad9;right:-100px;top:40px;opacity:.22}
+.hg{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.tag{display:inline-block;color:var(--pri);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:1.2px;background:var(--bg2);padding:6px 14px;border-radius:99px;border:1px solid var(--line)}
+h1{font-size:clamp(34px,5.4vw,58px);line-height:1.06;letter-spacing:-2px;margin:18px 0}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--pri),#d05bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(27px,3.6vw,40px);letter-spacing:-1.2px;margin:14px 0 12px;line-height:1.15}
+.mut{color:var(--mut)}.lead{font-size:18px;color:var(--mut);max-width:540px}
+.pill{display:flex;gap:10px 20px;flex-wrap:wrap;font-size:13.5px;color:var(--mut);margin-top:22px}.pill span::before{content:"✓ ";color:var(--ok);font-weight:800}
+.chat{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--sh);overflow:hidden}
+.ch{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--bg2)}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--pri2));display:grid;place-items:center;color:#fff;font-size:16px}
+.ch b{display:block;font-size:14px;line-height:1.2}.ch small{color:var(--ok);font-size:12px;font-weight:600}
+.cb{padding:14px 18px 18px}.m{max-width:86%;padding:10px 14px;border-radius:16px;margin:9px 0;font-size:14px;line-height:1.5;opacity:0;transform:translateY(8px);animation:in .5s forwards}
+.p{background:var(--bg2);border-bottom-left-radius:4px}.a{background:var(--pri);color:#fff;margin-left:auto;border-bottom-right-radius:4px}
+.m:nth-child(1){animation-delay:.3s}.m:nth-child(2){animation-delay:1.1s}.m:nth-child(3){animation-delay:1.9s}.m:nth-child(4){animation-delay:2.7s}.m:nth-child(5){animation-delay:3.7s}.m:nth-child(6){animation-delay:4.5s}
+@keyframes in{to{opacity:1;transform:none}}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:48px;position:relative;z-index:1}
+.st{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;text-align:center}.st b{display:block;font-size:28px;letter-spacing:-1px;color:var(--pri)}.st span{font-size:13px;color:var(--mut)}
+section{padding:80px 0}.alt{background:var(--bg2)}.head{text-align:center;max-width:680px;margin:0 auto 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:36px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.c:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--pri2)}
+.ic{width:46px;height:46px;border-radius:13px;background:var(--bg2);display:grid;place-items:center;font-size:22px;margin-bottom:14px;border:1px solid var(--line)}
+.c h3{margin:0 0 6px;font-size:18px;letter-spacing:-.3px}.c p{margin:0;color:var(--mut);font-size:15px}
+.n{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;display:grid;place-items:center;font-weight:700;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:28px}.chips span{font-size:13px;padding:7px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);color:var(--mut)}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.calc label{display:flex;justify-content:space-between;font-size:14.5px;margin-top:20px}input[type=range]{width:100%;accent-color:var(--pri)}
+.res{background:linear-gradient(160deg,var(--pri),#7a4dff 60%,#c04bff);color:#fff;border-radius:24px;padding:36px 28px;text-align:center;box-shadow:var(--sh)}
+.res big{display:block;font-size:clamp(38px,6vw,54px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin:8px 0}.res span{opacity:.88;font-size:14px}
+.tw{overflow-x:auto;margin-top:32px;border:1px solid var(--line);border-radius:16px;background:var(--card)}table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th,td{padding:15px 18px;border-bottom:1px solid var(--line);text-align:left}th{color:var(--mut);font-weight:600;background:var(--bg2)}tr:last-child td{border:0}
+tr.us td{background:color-mix(in srgb,var(--pri) 10%,var(--card));font-weight:700}
+.price{position:relative;display:flex;flex-direction:column}.price .big{font-size:42px;font-weight:800;letter-spacing:-1.5px;margin:6px 0}.price small{font-size:15px;font-weight:500}
+.price ul{padding:0;margin:12px 0 24px;list-style:none;color:var(--mut);font-size:14.5px;flex:1}.price li{padding:6px 0}.price li::before{content:"✓ ";color:var(--ok);font-weight:800}
+.hot{border:2px solid var(--pri);box-shadow:var(--sh)}.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--pri);color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:99px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:12px}summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--pri);font-size:22px;line-height:1}details[open] summary::after{content:"−"}details p{color:var(--mut);margin:12px 0 0;font-size:15px}
+.cta{text-align:center;background:linear-gradient(135deg,var(--pri),#8a4dff 60%,#c04bff);color:#fff;border-radius:28px;padding:64px 24px;box-shadow:var(--sh)}
+.cta .btn{background:#fff;color:#3a22c2!important;box-shadow:none}.cta p{opacity:.9;max-width:520px;margin:0 auto 26px}
+footer{border-top:1px solid var(--line);padding:34px 0;font-size:13.5px;color:var(--mut)}footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}.rv.on{opacity:1;transform:none}
+@media(max-width:800px){.hg,.calc{grid-template-columns:1fr}nav a:not(.btn){display:none}section{padding:56px 0}.hero{padding-top:44px}}
+@media(prefers-reduced-motion:reduce){.m,.rv{animation:none;opacity:1;transform:none;transition:none}}
+
+.lg{position:fixed;inset:0;background:var(--bg);color:var(--fg);overflow-y:auto;z-index:30;display:none}.lg.on{display:block}
+.lgbar{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:12px 22px;padding-top:calc(12px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.lgc{max-width:780px;margin:0 auto;padding:40px 22px 90px}.lgc h1{font-size:clamp(30px,4vw,42px);letter-spacing:-1.2px;margin:0 0 8px}
+.lgc h2{font-size:21px;letter-spacing:-.4px;margin:36px 0 8px}.lgc h3{font-size:17px;margin:22px 0 6px;color:var(--pri)}
+.lgc p,.lgc li{color:var(--mut);font-size:15.5px}.lgc p{margin:10px 0}.lgc ul{padding-left:22px;margin:8px 0}.lgc li{margin:5px 0}.lgc a{color:var(--pri);text-decoration:underline}.lgc mark{background:#ffe9a8;color:#3a2f00;padding:0 4px;border-radius:4px}
+footer a{text-decoration:underline;text-underline-offset:3px}footer a:hover{color:var(--pri)}
+</style>
+</head>
+<body>
+<header><div class="w"><a class="logo" href="#"><i>✦</i><span>automora<b>.ai</b></span></a>
+<nav><a href="#features">Features</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="btn s" href="https://calendly.com/mahazubairned">Book a demo</a></nav></div></header>
+
+<section class="hero"><div class="w"><div class="hg"><div>
+<span class="tag">For tutoring &amp; test-prep centers</span>
+<h1>The AI receptionist that <em>fills your tutoring center.</em></h1>
+<p class="lead">automora.ai answers parents’ and students’ calls, chats and texts in seconds, explains your programs, and books assessments straight into your calendar, day or night.</p>
+<p style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="https://calendly.com/mahazubairned">Book a demo</a><a class="btn o" href="#calc">See what you’re missing</a></p>
+<div class="pill"><span>Live in minutes</span><span>Keep your current number</span><span>Cancel anytime</span></div></div>
+<div class="chat"><div class="ch"><div class="av">✦</div><div><b>automora.ai receptionist</b><small>● Answering now</small></div></div><div class="cb">
+<div class="m p">Hi, my daughter is in 9th grade and struggling with chemistry. Do you offer tutoring?</div>
+<div class="m a">We do, and I’m sorry she’s finding it tough. Is there an exam coming up?</div>
+<div class="m p">Her midterm is in four weeks.</div>
+<div class="m a">Thanks. Most students begin with a free 45-minute assessment so the tutor can spot the gaps. I have Tuesday 4:30 PM or Thursday 5:00 PM. Which suits you?</div>
+<div class="m p">Tuesday, please.</div>
+<div class="m a">Booked! A confirmation is on its way to your phone.</div></div></div></div>
+<div class="stats"><div class="st"><b>24/7</b><span>Always answering</span></div><div class="st"><b>&lt; 5 sec</b><span>Average reply time</span></div><div class="st"><b>7</b><span>Channels, one assistant</span></div><div class="st"><b>0</b><span>Missed enquiries</span></div></div></div></section>
+
+<section class="alt" id="features"><div class="w"><div class="head rv" style="text-align:center"><span class="tag">What it does</span><h2>Everything your front desk does, without the missed calls</h2></div>
+<div class="grid">
+<div class="c rv"><div class="ic">📝</div><h3>Student intake</h3><p>Collects grade, subjects, struggles, upcoming exams and preferred days, then creates a ready-to-call lead for your director.</p></div>
+<div class="c rv"><div class="ic">📅</div><h3>Assessments &amp; trials</h3><p>Books assessments, parent consultations and trial lessons into open slots and texts a confirmation.</p></div>
+<div class="c rv"><div class="ic">💬</div><h3>Programs &amp; pricing</h3><p>Explains subjects, packages and session lengths, quoting only the prices you choose to share.</p></div>
+<div class="c rv"><div class="ic">🔄</div><h3>Reschedules</h3><p>Moves or cancels sessions within your rules and explains your make-up policy exactly as you wrote it.</p></div>
+<div class="c rv"><div class="ic">📈</div><h3>Exam-season surges</h3><p>Handles the rush before test dates without adding front-desk hours.</p></div>
+<div class="c rv"><div class="ic">🔒</div><h3>Student privacy</h3><p>Never discusses progress, grades or attendance with callers. Those questions become a message for your team.</p></div></div></div></section>
+
+<section><div class="w"><div class="head rv"><span class="tag">The problem</span><h2>Why tutoring centers lose new students</h2>
+<p class="mut" style="font-size:17px">Parents search right after a bad report card or a test date appears, and they contact several centers in one evening. Your tutors are teaching after school, exactly when parents call. A callback tomorrow often loses to the center that replied first. <b style="color:var(--fg)">automora.ai replies first.</b></p></div></div></section>
+
+<section class="alt" id="how"><div class="w"><div class="head rv" style="text-align:center"><span class="tag">Setup</span><h2>Live in three steps</h2></div>
+<div class="grid">
+<div class="c rv"><div class="n">1</div><h3>Teach it your center</h3><p>Add subjects, grades, programs, session lengths, prices and hours, or import a page from your website.</p></div>
+<div class="c rv"><div class="n">2</div><h3>Set your rules</h3><p>Decide what goes to a person, when to transfer to your director and which slots can be booked. Test every channel before launch.</p></div>
+<div class="c rv"><div class="n">3</div><h3>Go live</h3><p>Forward your line or use a new number, and paste one line of code to add chat and voice to your website.</p></div></div>
+<div class="chips"><span>Google Calendar</span><span>Outlook</span><span>Zapier</span><span>Make</span><span>n8n</span><span>Webhooks</span><span>Google Sheets</span><span>Slack alerts</span><span>WhatsApp</span><span>Instagram</span><span>Messenger</span><span>SMS</span><span>Email</span></div></div></section>
+
+<section id="calc"><div class="w calc"><div class="rv"><span class="tag">Missed-call calculator</span><h2>What are missed calls costing you?</h2><p class="mut">Adjust the sliders to your own numbers.</p>
+<label>Missed calls per week <b id="v1">10</b></label><input id="s1" type="range" min="1" max="50" value="10">
+<label>Callers who would have enrolled <b id="v2">35%</b></label><input id="s2" type="range" min="5" max="80" value="35">
+<label>Average student value <b id="v3">$800</b></label><input id="s3" type="range" min="100" max="3000" step="50" value="800"></div>
+<div class="res rv"><span>Estimated extra revenue per month</span><big id="out">$0</big><span id="net"></span><p style="font-size:12px;margin:14px 0 0;opacity:.75">An estimate from your own numbers, not a promise.</p></div></div></section>
+
+<section class="alt"><div class="w"><div class="head rv" style="text-align:center"><span class="tag">Compare</span><h2>automora.ai vs voicemail vs a human service</h2></div>
+<div class="tw rv"><table><tr><th>Option</th><th>Cost</th><th>Hours</th><th>Books on calendar</th><th>Channels</th></tr>
+<tr><td>Voicemail</td><td>Free</td><td>24/7</td><td>No</td><td>Phone only</td></tr>
+<tr><td>Answering service</td><td>$250–$300+/mo</td><td>24/7</td><td>Sometimes</td><td>Phone, some chat</td></tr>
+<tr><td>In-house receptionist</td><td>~$4,500/mo</td><td>Business hours</td><td>Yes</td><td>One call at a time</td></tr>
+<tr class="us"><td>automora.ai</td><td>From $149/mo</td><td>24/7</td><td>Yes</td><td>Phone, chat, SMS, email, social</td></tr></table></div></div></section>
+
+<section id="pricing"><div class="w"><div class="head rv" style="text-align:center"><span class="tag">Pricing</span><h2>Simple plans that pay for themselves</h2><p class="mut">Example pricing in USD. No setup fee.</p></div>
+<div class="grid" style="margin-top:44px">
+<div class="c price rv"><h3>Phone Only</h3><div class="big">$149<small class="mut">/mo</small></div><ul><li>24/7 AI phone answering</li><li>Calendar booking</li><li>Lead capture</li></ul><a class="btn o" href="https://calendly.com/mahazubairned">Get started</a></div>
+<div class="c price hot rv"><span class="badge">Most popular</span><h3>Starter</h3><div class="big">$299<small class="mut">/mo</small></div><ul><li>Phone, website chat &amp; SMS</li><li>Live transfer to your director</li><li>Reminders &amp; lead dashboard</li></ul><a class="btn" href="https://calendly.com/mahazubairned">Get started</a></div>
+<div class="c price rv"><h3>Growth</h3><div class="big">$549<small class="mut">/mo</small></div><ul><li>All channels incl. WhatsApp &amp; email</li><li>Follow-ups &amp; analytics</li><li>Zapier, Make &amp; API</li></ul><a class="btn o" href="https://calendly.com/mahazubairned">Get started</a></div></div></div></section>
+
+<section class="alt" id="faq"><div class="w" style="max-width:780px"><div class="head rv" style="text-align:center"><span class="tag">FAQ</span><h2>Straight answers</h2></div>
+<details><summary>Can it book assessments and trial lessons?</summary><p>Yes. It checks live availability in Google or Outlook Calendar, books the right session type and texts a confirmation.</p></details>
+<details><summary>Does it promise better grades?</summary><p>No. It describes your programs as you wrote them and never promises scores or results.</p></details>
+<details><summary>Will it share a student’s progress with whoever asks?</summary><p>No. Questions about progress, grades or attendance become a message for your team, who can verify who is asking.</p></details>
+<details><summary>Can it handle online tutoring enquiries?</summary><p>Yes. It explains how your online sessions work and books them the same way as in-person ones.</p></details>
+<details><summary>What about students under 18?</summary><p>Add a rule that a parent or guardian’s name and number are required before booking, and it will ask for them.</p></details>
+<details><summary>Does it integrate with my tutoring software?</summary><p>It books into Google Calendar, Outlook or a built-in calendar, and sends leads to other tools via Zapier, Make, n8n or webhooks.</p></details></div></section>
+
+<section><div class="w"><div class="cta rv"><h2>Answer every parent, 24/7.</h2><p>Website chat can be live in about 15 minutes. Book a demo and see it handle your own enquiries.</p><a class="btn" href="https://calendly.com/mahazubairned">Book a demo</a></div></div></section>
+
+<footer><div class="w"><div><b>automora.ai</b> · AI receptionists and automation for service businesses</div><div><a href="#terms" data-legal="terms">Terms &amp; Conditions</a> &nbsp;·&nbsp; <a href="#privacy" data-legal="privacy">Privacy Policy</a></div><div>© 2026 automora.ai. All rights reserved.</div></div></footer>
+<script>
+var s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3');
+function calc(){var a=+s1.value,b=+s2.value,c=+s3.value,r=Math.round(a*4.33*b/100*c);
+v1.textContent=a;v2.textContent=b+'%';v3.textContent='$'+c.toLocaleString('en-US');
+out.textContent='$'+r.toLocaleString('en-US')+'/mo';
+net.textContent='Net of a $149 plan: $'+(r-149).toLocaleString('en-US')+'/mo';}
+[s1,s2,s3].forEach(function(e){e.addEventListener('input',calc)});calc();
+var els=document.querySelectorAll('.rv');
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});els.forEach(function(e){io.observe(e)})}else{els.forEach(function(e){e.classList.add('on')})}
+</script>
+<div class="lg" id="terms" role="dialog" aria-modal="true"><div class="lgbar"><a class="logo" href="#" data-close><i>✦</i><span>automora<b>.ai</b></span></a><button class="btn o s" data-close>✕ Close</button></div><article class="lgc"><h1>Terms and Conditions</h1>
+<p><strong>Effective Date:</strong> October 28, 2026</p>
+<h2>1. Introduction</h2>
+<p>Welcome to Automora (“we,” “us,” or “our”). We provide AI-powered voice agents, virtual receptionists, appointment-setting systems, lead qualification, customer support automation, and related digital services for businesses.</p>
+<p>These Terms and Conditions govern your use of our website and services. By accessing our website or purchasing our services, you agree to these terms.</p>
+<p><strong>Contact:</strong> <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a><br />
+<strong>Website:</strong> automora.ai</p>
+<h2>2. Our Services</h2>
+<p>Automora provides services that may include:</p>
+<ul><li>AI voice agents for inbound calls and customer enquiries.</li><li>Automated appointment scheduling and reminders.</li><li>Lead capture and qualification.</li><li>AI-powered customer support.</li><li>CRM, calendar, website, and messaging integrations.</li><li>Workflow automation, configuration, maintenance, and support.</li></ul>
+<p>The exact features, usage limits, pricing, and deliverables will be specified in the relevant service plan, proposal, or agreement.</p>
+<h2>3. AI Service Disclaimer</h2>
+<p>Our services use artificial intelligence and automated systems. AI-generated responses may occasionally be inaccurate, incomplete, or misunderstood.</p>
+<p>Although we aim to provide reliable services, we do not guarantee that AI agents will answer every call correctly, eliminate every missed enquiry, or generate a specific number of leads, appointments, sales, or revenue.</p>
+<p>Clients are responsible for reviewing the information supplied to their AI agents, keeping business details accurate, and providing human assistance when needed.</p>
+<p>Our AI agents are not substitutes for professional legal, medical, financial, emergency, or safeguarding advice.</p>
+<h2>4. Client Responsibilities</h2>
+<p>By using our services, you agree to:</p>
+<ul><li>Provide accurate and up-to-date business information.</li><li>Ensure that you have the necessary rights and permissions to share customer data with us.</li><li>Obtain any legally required consent for calls, recordings, transcripts, automated messages, and personal-data processing.</li><li>Comply with applicable privacy, consumer-protection, telemarketing, and communications laws.</li><li>Use our services lawfully and responsibly.</li><li>Protect your account credentials and connected third-party accounts.</li><li>Review AI-agent outputs and provide appropriate human escalation where necessary.</li><li>Avoid using our services for spam, fraud, harassment, impersonation, or unlawful activities.</li></ul>
+<p>Clients remain responsible for their business operations and decisions made using the services.</p>
+<h2>5. AI Calls, Recordings, and Messaging</h2>
+<p>AI agents may interact with callers through automated voice or messaging systems. Where required by law, clients must disclose the use of AI, notify callers about recording or transcription, and obtain the necessary consent.</p>
+<p>Automated outbound calls and messages must only be used where legally permitted and appropriately authorized.</p>
+<p>Automora may assist with configuring notices and consent workflows, but this does not constitute legal advice or guarantee compliance.</p>
+<h2>6. Children and Educational Services</h2>
+<p>Clients serving children or students are responsible for ensuring that their use of our services complies with applicable child-privacy, parental-consent, education, and safeguarding requirements.</p>
+<p>Clients must not submit unnecessary sensitive information about children or configure agents to make high-impact decisions about students unless the use is expressly agreed upon and appropriately safeguarded.</p>
+<h2>7. Pricing and Payments</h2>
+<p>Our service fees, setup charges, included usage, and any additional usage charges will be communicated before purchase or specified in the applicable service agreement.</p>
+<p>Unless otherwise agreed in writing:</p>
+<ul><li>Subscription fees are payable in advance.</li><li>Setup fees are payable before implementation begins.</li><li>Usage beyond the included allowance may incur additional charges.</li><li>Third-party costs, including telephony, AI usage, voice services, SMS, and hosting, may be charged separately or included as expressly stated in your plan.</li><li>Clients are responsible for applicable taxes and payment-provider fees where legally required.</li></ul>
+<p>We will communicate applicable pricing and obtain any required authorization before imposing new recurring charges.</p>
+<h2>8. Free Trials and Pilot Programs</h2>
+<p>Automora may offer free trials or paid pilot programs at its discretion.</p>
+<p>Each offer may have specific time limits, usage caps, features, and eligibility conditions. Free trials do not include unlimited calls, messages, or AI usage unless expressly stated.</p>
+<p>A trial will not automatically convert into a paid subscription unless the conversion and payment terms have been clearly disclosed and appropriately authorized.</p>
+<p>At the end of a trial, services may be limited or discontinued unless a paid plan is agreed upon.</p>
+<h2>9. Cancellation and Refunds</h2>
+<p>Clients may cancel their subscriptions according to the cancellation terms stated in their service agreement or by contacting <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a>.</p>
+<p>Unless otherwise agreed:</p>
+<ul><li>Cancellation prevents renewal for the next billing period.</li><li>Access may continue until the end of the current paid period.</li><li>Setup fees and completed implementation work are non-refundable except where required by law or expressly agreed otherwise.</li><li>Unused subscription time or usage allowances are not refundable unless required by law or stated in the applicable plan.</li></ul>
+<p>Any non-waivable statutory rights remain unaffected.</p>
+<h2>10. Third-Party Services</h2>
+<p>Our services may rely on third-party platforms, including AI providers, voice-generation services, CRM systems, telephony providers, hosting platforms, calendar integrations, and payment processors.</p>
+<p>Third-party services may have separate terms, fees, availability limits, and privacy policies. Automora is not responsible for outages, changes, or failures outside its reasonable control, except where liability cannot legally be excluded or the issue results from our own breach.</p>
+<h2>11. Intellectual Property</h2>
+<p>Automora retains ownership of its pre-existing software, templates, systems, reusable workflows, documentation, and proprietary materials.</p>
+<p>Clients retain ownership of the business information and materials they provide.</p>
+<p>Ownership and permitted use of custom deliverables will be determined by the applicable written agreement. Unless otherwise agreed, clients may not resell, copy, or commercially exploit Automora’s proprietary systems.</p>
+<h2>12. Privacy and Data Protection</h2>
+<p>We process personal information as described in our Privacy Policy.</p>
+<p>Clients must ensure they have the necessary authority and lawful basis to provide personal information to Automora and its service providers.</p>
+<p>Where appropriate, a separate Data Processing Agreement may govern our processing of personal information on behalf of a client.</p>
+<h2>13. Service Availability</h2>
+<p>We use commercially reasonable efforts to maintain our services. However, uninterrupted or error-free operation is not guaranteed.</p>
+<p>Services may be affected by maintenance, internet connectivity, third-party platforms, telephone carriers, AI providers, or other events outside our reasonable control.</p>
+<h2>14. Limitation of Liability</h2>
+<p>To the maximum extent permitted by applicable law, Automora will not be liable for indirect, incidental, special, or consequential losses, including lost profits, lost revenue, or lost business opportunities.</p>
+<p>To the maximum extent permitted by law, our aggregate liability arising from the affected services will not exceed the fees paid or payable for those services during the three months preceding the event giving rise to the claim.</p>
+<p>Nothing in these terms excludes or limits liability where such exclusion or limitation is prohibited by law.</p>
+<h2>15. Suspension and Termination</h2>
+<p>We may suspend or terminate access where reasonably necessary due to non-payment, unlawful use, material breach of these terms, security risks, or suspension of a critical third-party service.</p>
+<p>Upon termination, access to the services may end. Data export and deletion will be handled according to the applicable agreement, our Privacy Policy, and legal requirements.</p>
+<h2>16. Changes to These Terms</h2>
+<p>We may update these Terms and Conditions to reflect changes to our services or legal obligations. The updated version will be published on our website with a revised effective or last-updated date.</p>
+<p>Where required, we will provide notice of material changes.</p>
+<h2>17. Governing Law</h2>
+<p>These Terms and Conditions are governed by the laws of <mark>[Insert Governing Jurisdiction]</mark>, subject to applicable mandatory legal protections.</p>
+<p>Any disputes will first be addressed through good-faith discussions. If a resolution cannot be reached, disputes will be handled by the competent courts of <mark>[Insert Jurisdiction]</mark>, subject to applicable law.</p>
+<h2>18. Contact Us</h2>
+<p>For questions regarding these Terms and Conditions, contact:</p>
+<p><strong>Automora</strong><br />
+Email: <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a></p>
+</article></div><div class="lg" id="privacy" role="dialog" aria-modal="true"><div class="lgbar"><a class="logo" href="#" data-close><i>✦</i><span>automora<b>.ai</b></span></a><button class="btn o s" data-close>✕ Close</button></div><article class="lgc"><h1>Privacy Policy</h1>
+<p><strong>Effective Date:</strong> October 28, 2026</p>
+<h2>1. Introduction</h2>
+<p>Automora (“we,” “us,” or “our”) respects your privacy. This Privacy Policy explains how we collect, use, disclose, and protect personal information when you visit our website, contact us, purchase our services, or interact with our AI-powered solutions.</p>
+<p>Our services include AI voice agents, virtual receptionists, appointment scheduling, lead qualification, customer support automation, and business workflow automation.</p>
+<p><strong>Privacy Contact:</strong> <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a></p>
+<h2>2. Information We Collect</h2>
+<p>Depending on how you use our website and services, we may collect the following information.</p>
+<h3>A. Personal and Contact Information</h3>
+<ul><li>Name and business name.</li><li>Email address and telephone number.</li><li>Business address and professional details.</li><li>Information submitted through website forms or direct communications.</li></ul>
+<h3>B. Account and Billing Information</h3>
+<ul><li>Account identifiers and subscription details.</li><li>Billing history, invoices, and transaction references.</li><li>Support requests and service-related communications.</li></ul>
+<p>Payments may be processed by third-party payment providers. We do not intend to store full payment-card details on our own systems unless expressly disclosed.</p>
+<h3>C. AI Voice-Agent Information</h3>
+<p>Depending on the configuration and instructions of our clients, our AI agents may process:</p>
+<ul><li>Caller names and telephone numbers.</li><li>Call recordings and transcripts, where enabled.</li><li>AI-generated call summaries.</li><li>Enquiry details and requested services.</li><li>Appointment preferences and booking details.</li><li>Lead records and customer-support interactions.</li></ul>
+<p>This information may relate to prospective customers, parents, students, employees, or other callers.</p>
+<h3>D. Technical Information</h3>
+<p>We and our service providers may collect technical information such as IP addresses, browser and device details, website usage, system logs, cookie identifiers, and security events.</p>
+<h3>E. Information You Provide</h3>
+<p>We may collect information that you voluntarily provide through forms, emails, calls, documents, integrations, or other communication channels.</p>
+<p>Please do not provide sensitive personal information unless it is necessary for the service and you are authorized to share it.</p>
+<h2>3. How We Use Information</h2>
+<p>We may use personal information to:</p>
+<ul><li>Respond to enquiries and provide customer support.</li><li>Create, configure, and operate AI agents and automation workflows.</li><li>Capture leads and schedule appointments according to client instructions.</li><li>Manage accounts, subscriptions, invoices, and payments.</li><li>Maintain, troubleshoot, and secure our services.</li><li>Monitor performance and prevent misuse.</li><li>Communicate service updates and important notices.</li><li>Improve our services in ways permitted by applicable law and our agreements.</li><li>Meet legal obligations and protect our legal rights.</li><li>Send marketing communications where legally permitted.</li></ul>
+<p>We do not intend to use personal information for purposes incompatible with this policy or our applicable contractual obligations.</p>
+<h2>4. Our Role in Processing Information</h2>
+<p>When you contact Automora directly through our website or sales channels, we generally determine how your information is used to respond to you and manage our business.</p>
+<p>When a tutoring center or another business uses our AI agents to interact with its callers, that business may determine the purposes for which caller information is processed. Automora may process that information on the business’s behalf, subject to the applicable agreement and law.</p>
+<p>If you are a caller interacting with an AI agent operated by one of our clients, please also review that business’s privacy policy or contact it directly regarding its use of your information.</p>
+<h2>5. AI and Third-Party Providers</h2>
+<p>We may use third-party providers to deliver our services, including:</p>
+<ul><li><strong>GoHighLevel</strong> for CRM, workflows, and related business automation features.</li><li><strong>OpenAI</strong> for AI language-model processing, where configured.</li><li><strong>ElevenLabs</strong> for AI voice and speech services, where configured.</li><li>Telephone, messaging, hosting, calendar, analytics, and payment providers as required.</li></ul>
+<p>Information may be shared with these providers only as reasonably necessary to deliver, maintain, secure, and support the relevant services, or as otherwise permitted by law and applicable agreements.</p>
+<p>Each provider may have its own terms, privacy documentation, retention practices, and data-processing arrangements. Actual providers and configurations may vary by service.</p>
+<p>We do not claim that all providers have identical data-retention, training, security, or data-location practices. Those details depend on the specific service, account settings, and applicable agreements.</p>
+<h2>6. Call Recording and Transcription</h2>
+<p>Our AI services may record, transcribe, summarize, or analyze calls when these features are enabled.</p>
+<p>Where required by law, the business using the AI agent must provide appropriate notices and obtain valid consent before recording or processing calls.</p>
+<p>We may help configure these features, but clients remain responsible for ensuring that their use of the service complies with applicable requirements.</p>
+<h2>7. Children’s Privacy</h2>
+<p>Our services may be used by educational businesses that serve children and students. We do not intend for our general website to knowingly collect personal information directly from children under 13 without the required safeguards and consent.</p>
+<p>Where a service involves children’s personal information, the relevant customer and Automora must determine the applicable legal requirements before deployment, including any required parental notice and verifiable parental consent.</p>
+<p>Clients must not configure our services to collect unnecessary information from children. Appropriate access, correction, deletion, and parental-consent processes must be implemented where required.</p>
+<h2>8. Legal Basis for Processing</h2>
+<p>Where applicable law requires a legal basis for processing personal information, we will rely on an appropriate basis, which may include:</p>
+<ul><li>Performance of a contract.</li><li>Compliance with legal obligations.</li><li>Legitimate interests, where permitted.</li><li>Consent, where required.</li><li>Another lawful basis recognized by applicable law.</li></ul>
+<p>The appropriate basis depends on the information, purpose, individual, and jurisdiction.</p>
+<h2>9. How We Share Information</h2>
+<p>We may share personal information with:</p>
+<ul><li>Service providers and subprocessors that help deliver our services.</li><li>The business operating the relevant AI agent and its authorized personnel.</li><li>Connected CRM, calendar, telephony, messaging, and hosting services.</li><li>Payment providers, professional advisers, and insurers where necessary.</li><li>Regulators, courts, or law-enforcement authorities where required or permitted by law.</li><li>Relevant parties in a merger, acquisition, or transfer of business assets, subject to applicable protections.</li><li>Other parties where you have directed us to share information or have provided valid consent.</li></ul>
+<p>We do not sell personal information for money as a business practice. Any advertising, analytics, or other data-sharing activities that are legally classified as a sale or sharing of personal information will be disclosed and handled according to applicable law.</p>
+<h2>10. Cookies and Website Technologies</h2>
+<p>Our website may use cookies and similar technologies to support essential functionality, security, preferences, and performance.</p>
+<p>If we use analytics or advertising technologies requiring additional notice, consent, or opt-out controls, we will provide those measures as required by applicable law.</p>
+<p>You may manage cookies through your browser settings, although disabling certain cookies may affect website functionality.</p>
+<h2>11. Data Retention</h2>
+<p>We retain personal information only for as long as reasonably necessary for the purposes described in this policy, subject to legal, contractual, security, and operational requirements.</p>
+<p>Retention periods may differ by data type and service configuration:</p>
+<ul><li>Account and billing information may be retained for administrative and legal purposes.</li><li>Call recordings, transcripts, and summaries may be retained according to the relevant configuration and customer agreement.</li><li>Support records may be retained to resolve issues and maintain service history.</li><li>Technical and security logs may be retained for a reasonable period to protect our systems.</li></ul>
+<p>When information is no longer required, we will take reasonable steps to delete or de-identify it, subject to applicable obligations.</p>
+<p>Copies held in backups or by third-party providers may not be deleted immediately. Requests will be handled according to our role, technical capabilities, agreements, and applicable law.</p>
+<h2>12. Security</h2>
+<p>We use reasonable administrative, technical, and organizational measures designed to protect personal information against unauthorized access, loss, misuse, alteration, and disclosure.</p>
+<p>However, no online service or transmission method can be guaranteed completely secure.</p>
+<p>Clients are responsible for protecting their own accounts, credentials, API keys, and connected systems.</p>
+<p>If you believe that personal information has been compromised in connection with our services, contact us at <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a>.</p>
+<p>We will handle any required incident notifications in accordance with applicable law and our contractual obligations.</p>
+<h2>13. International Data Transfers</h2>
+<p>Automora and its service providers may process personal information in countries other than the country where it was collected, including the United States and other locations where our providers operate.</p>
+<p>Where applicable law requires safeguards for international transfers, we will implement appropriate mechanisms and contractual protections.</p>
+<h2>14. Your Privacy Rights</h2>
+<p>Depending on your location and applicable law, you may have the right to:</p>
+<ul><li>Request access to your personal information.</li><li>Request correction of inaccurate information.</li><li>Request deletion of personal information.</li><li>Obtain a copy of certain information in a portable format.</li><li>Object to or restrict certain processing.</li><li>Withdraw consent where processing relies on consent.</li><li>Opt out of certain targeted advertising, sale, or sharing activities.</li><li>Appeal certain privacy-related decisions where required by law.</li><li>Submit a complaint to a relevant privacy regulator.</li></ul>
+<p>To exercise your rights, contact <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a>. We may need to verify your identity or authority before responding.</p>
+<p>If your information was collected by a tutoring center or another business using our services, we may direct you to that business or assist it in responding to your request, depending on our role and applicable law.</p>
+<p>We will not unlawfully discriminate against you for exercising a privacy right.</p>
+<h2>15. Marketing Communications</h2>
+<p>We may send marketing communications where legally permitted. You can unsubscribe from marketing emails using the unsubscribe link or contact us directly.</p>
+<p>Opting out of marketing does not prevent us from sending essential account, billing, security, or service-related communications.</p>
+<p>Automated calls and text messages must comply with applicable consent, disclosure, and opt-out requirements.</p>
+<h2>16. Third-Party Websites</h2>
+<p>Our website may contain links to third-party websites or services. We do not control their privacy practices and encourage you to review their privacy policies before providing personal information.</p>
+<h2>17. Changes to This Privacy Policy</h2>
+<p>We may update this Privacy Policy to reflect changes in our services, data practices, providers, or legal obligations.</p>
+<p>Updates will be published on this page with a revised effective or last-updated date. Where required, we will provide additional notice or obtain consent before implementing material changes.</p>
+<h2>18. Contact Us</h2>
+<p>For privacy questions, requests, or complaints, contact:</p>
+<p><strong>Automora</strong><br />
+Email: <a href="mailto:bintezubair10@gmail.com">bintezubair10@gmail.com</a></p>
+</article></div><script>
+(function(){var V={terms:document.getElementById('terms'),privacy:document.getElementById('privacy')};
+function show(k){for(var x in V)V[x].classList.toggle('on',x===k);document.body.style.overflow=k?'hidden':'';if(k)V[k].scrollTop=0}
+function setHash(t){try{if(t)location.hash=t;else history.replaceState(null,'',location.pathname+location.search)}catch(e){}}
+document.addEventListener('click',function(e){var a=e.target.closest('[data-legal],[data-close]');if(!a)return;e.preventDefault();
+if(a.hasAttribute('data-close')){show(null);setHash('')}else{var k=a.getAttribute('data-legal');show(k);setHash(k)}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')show(null)});
+function fromHash(){var h=(location.hash||'').slice(1);show(h==='terms'||h==='privacy'?h:null)}
+window.addEventListener('hashchange',fromHash);fromHash();})();
+</script>
+</body>
+</html>
