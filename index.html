@@ -58,6 +58,7 @@ th,td{padding:15px 18px;border-bottom:1px solid var(--line);text-align:left}th{c
 tr.us td{background:color-mix(in srgb,var(--pri) 10%,var(--card));font-weight:700}
 .price{position:relative;display:flex;flex-direction:column}.price .big{font-size:42px;font-weight:800;letter-spacing:-1.5px;margin:6px 0}.price small{font-size:15px;font-weight:500}
 .price ul{padding:0;margin:12px 0 24px;list-style:none;color:var(--mut);font-size:14.5px;flex:1}.price li{padding:6px 0}.price li::before{content:"✓ ";color:var(--ok);font-weight:800}
+.pricing-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;max-width:920px;margin:40px auto 0}.pricing-copy h2{margin-top:16px}
 .hot{border:2px solid var(--pri);box-shadow:var(--sh)}.badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--pri);color:#fff;font-size:12px;font-weight:700;padding:4px 14px;border-radius:99px}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:12px}summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary::after{content:"+";color:var(--pri);font-size:22px;line-height:1}details[open] summary::after{content:"−"}details p{color:var(--mut);margin:12px 0 0;font-size:15px}
@@ -65,7 +66,7 @@ summary::after{content:"+";color:var(--pri);font-size:22px;line-height:1}details
 .cta .btn{background:#fff;color:#3a22c2!important;box-shadow:none}.cta p{opacity:.9;max-width:520px;margin:0 auto 26px}
 footer{border-top:1px solid var(--line);padding:34px 0;font-size:13.5px;color:var(--mut)}footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}.rv.on{opacity:1;transform:none}
-@media(max-width:800px){.hg,.calc{grid-template-columns:1fr}nav a:not(.btn){display:none}section{padding:56px 0}.hero{padding-top:44px}}
+@media(max-width:800px){.hg,.calc,.pricing-layout{grid-template-columns:1fr}nav a:not(.btn){display:none}section{padding:56px 0}.hero{padding-top:44px}}
 @media(prefers-reduced-motion:reduce){.m,.rv{animation:none;opacity:1;transform:none;transition:none}}
 
 .lg{position:fixed;inset:0;background:var(--bg);color:var(--fg);overflow-y:auto;z-index:30;display:none}.lg.on{display:block}
@@ -125,13 +126,11 @@ footer a{text-decoration:underline;text-underline-offset:3px}footer a:hover{colo
 <tr><td>Voicemail</td><td>Free</td><td>24/7</td><td>No</td><td>Phone only</td></tr>
 <tr><td>Answering service</td><td>$250–$300+/mo</td><td>24/7</td><td>Sometimes</td><td>Phone, some chat</td></tr>
 <tr><td>In-house receptionist</td><td>~$4,500/mo</td><td>Business hours</td><td>Yes</td><td>One call at a time</td></tr>
-<tr class="us"><td>automora.ai</td><td>From $149/mo</td><td>24/7</td><td>Yes</td><td>Phone, chat, SMS, email, social</td></tr></table></div></div></section>
+<tr class="us"><td>automora.ai</td><td>$400/mo + $300 one-time setup</td><td>24/7</td><td>Yes</td><td>Phone, chat, SMS, email, social</td></tr></table></div></div></section>
 
-<section id="pricing"><div class="w"><div class="head rv" style="text-align:center"><span class="tag">Pricing</span><h2>Simple plans that pay for themselves</h2><p class="mut">Example pricing in USD. No setup fee.</p></div>
-<div class="grid" style="margin-top:44px">
-<div class="c price rv"><h3>Phone Only</h3><div class="big">$149<small class="mut">/mo</small></div><ul><li>24/7 AI phone answering</li><li>Calendar booking</li><li>Lead capture</li></ul><a class="btn o" href="https://calendly.com/mahazubairned">Get started</a></div>
-<div class="c price hot rv"><span class="badge">Most popular</span><h3>Starter</h3><div class="big">$299<small class="mut">/mo</small></div><ul><li>Phone, website chat &amp; SMS</li><li>Live transfer to your director</li><li>Reminders &amp; lead dashboard</li></ul><a class="btn" href="https://calendly.com/mahazubairned">Get started</a></div>
-<div class="c price rv"><h3>Growth</h3><div class="big">$549<small class="mut">/mo</small></div><ul><li>All channels incl. WhatsApp &amp; email</li><li>Follow-ups &amp; analytics</li><li>Zapier, Make &amp; API</li></ul><a class="btn o" href="https://calendly.com/mahazubairned">Get started</a></div></div></div></section>
+<section id="pricing"><div class="w"><div class="pricing-layout">
+<div class="pricing-copy rv"><span class="tag">The one plan</span><h2>Never miss a call.</h2><p class="mut">Live within 24 hours of your onboarding form. Month to month, cancel any time with written notice. Only what you pick goes in scope.</p><a class="btn" href="https://calendly.com/mahazubairned">Book a demo</a></div>
+<div class="c price hot rv"><h3>All-in-One</h3><div class="big">$400<small class="mut">/mo</small></div><p class="mut">+$300 one-time setup fee</p><ul><li>24/7 AI phone answering</li><li>Website chat, SMS, WhatsApp &amp; email</li><li>Calendar booking &amp; lead capture</li><li>Live transfer, reminders &amp; follow-ups</li><li>Analytics</li></ul><a class="btn" href="https://calendly.com/mahazubairned">Book a demo</a></div></div></div></section>
 
 <section class="alt" id="faq"><div class="w" style="max-width:780px"><div class="head rv" style="text-align:center"><span class="tag">FAQ</span><h2>Straight answers</h2></div>
 <details><summary>Can it book assessments and trial lessons?</summary><p>Yes. It checks live availability in Google or Outlook Calendar, books the right session type and texts a confirmation.</p></details>
@@ -149,7 +148,7 @@ var s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=documen
 function calc(){var a=+s1.value,b=+s2.value,c=+s3.value,r=Math.round(a*4.33*b/100*c);
 v1.textContent=a;v2.textContent=b+'%';v3.textContent='$'+c.toLocaleString('en-US');
 out.textContent='$'+r.toLocaleString('en-US')+'/mo';
-net.textContent='Net of a $149 plan: $'+(r-149).toLocaleString('en-US')+'/mo';}
+net.textContent='Net of a $400 plan: $'+(r-400).toLocaleString('en-US')+'/mo';}
 [s1,s2,s3].forEach(function(e){e.addEventListener('input',calc)});calc();
 var els=document.querySelectorAll('.rv');
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});els.forEach(function(e){io.observe(e)})}else{els.forEach(function(e){e.classList.add('on')})}
